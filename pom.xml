@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>za.co.khanya</groupId>
+    <artifactId>khanya-library-console</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Khanya Community Library - Console (Phase 1)</name>
+    <description>Core Java console application for the library management system.</description>
+
+    <properties>
+        <!-- We compile for Java 17. -->
+        <maven.compiler.release>17</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <exec.mainClass>za.co.khanya.library.LibraryConsoleApplication</exec.mainClass>
+    </properties>
+
+    <build>
+        <finalName>khanya-library-console</finalName>
+        <plugins>
+            <!-- Puts the main class into the JAR's manifest so you can run it
+                 with:  java -jar target/khanya-library-console.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>za.co.khanya.library.LibraryConsoleApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Lets you run the app during development with:
+                 mvn exec:java -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <mainClass>${exec.mainClass}</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
